@@ -41,6 +41,14 @@ Authenticated connector, browser session and Git Credential Manager identified `
 - Sampled eight dark-theme text/background token pairs. Contrast ratios ranged from 6.75:1 to 14.08:1; this is a targeted palette check, not a complete accessibility audit.
 - Regenerated the self-contained preview with theme support. The operating system preference itself was not changed during browser review; system-change and blocked-storage behavior were exercised in the interaction test.
 
+## Blue palette update — 13 October 2026
+
+- Replaced olive/sage accents with blue in both themes, including buttons, headings, borders, portrait framing, status labels, selected filters, illustration surfaces and ambient motion. Dark surfaces now use navy; the favicon and browser theme metadata match.
+- Reviewed both themes on desktop and the narrow Malay layout and project dialog at 320px. Theme choice persisted after reload, navigation closed after an anchor selection, and no horizontal overflow or browser console errors were found.
+- Sampled eight text/background pairs in each theme: light ratios ranged from 4.65:1 to 12.37:1; dark ratios ranged from 6.75:1 to 13.94:1. These are palette checks, not a complete accessibility audit.
+- `npm test` passed all three tests, `npm run build` passed, and `npm run export:preview` regenerated the standalone preview. Updated the current design and handoff guidance to retain the blue identity.
+- Project content, certificate statuses, photographs and document bytes were preserved. Hosting remains pending.
+
 ## Remaining deployment checks
 
 Vercel / Cloudflare hosting is still pending. This review verifies local behavior, not a public website deployment. No live website URL, hosting success or independently earned credential is claimed.

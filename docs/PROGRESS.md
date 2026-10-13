@@ -45,3 +45,10 @@ Next: connect this repository to the chosen Vercel / Cloudflare provider, then r
 - Kept theme state across translation and kept the compact header usable down to 320px.
 - Extended existing interaction coverage, passed tests/build, reviewed dark mode in the production browser preview, and regenerated `PREVIEW.html`.
 - Preserved all project descriptions/statuses, certificate records and personal assets. Hosting remains pending.
+
+### Blue Team palette
+
+- Changed the identity colour from olive to blue in light mode and sky blue in dark mode, with navy dark surfaces.
+- Updated the green-tinted section surfaces, illustration backgrounds, ambient details, browser colour metadata and favicon. Renamed the CSS colour tokens to `--accent` / `--accent-soft`.
+- Checked both themes in the browser, including the narrow Malay navigation and dialog; sampled text contrast remained above 4.5:1.
+- Passed tests/build, regenerated the offline preview and updated design/handoff notes. Project and certificate content was preserved.

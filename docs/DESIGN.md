@@ -2,7 +2,7 @@
 
 ## References and adaptation
 
-- https://raifkaya.nl/ — visual reference for a top navigation bar, two-column introduction, oval portrait, spacious About section and project grid. Its live page was visually inspected. The implementation adapts those relationships to an earthy palette and Izzwan's content; it is not a pixel-identical reproduction.
+- https://raifkaya.nl/ — visual reference for a top navigation bar, two-column introduction, oval portrait, spacious About section and project grid. Its live page was visually inspected. The implementation adapts those relationships to a blue palette and Izzwan's content; it is not a pixel-identical reproduction.
 - https://fdhlsfi.site/ — reference for an approachable portfolio, project context / contribution / outcome and the two-image portrait interaction requested by Izzwan. The supplied photos are used rather than the reference portrait.
 - https://www.satvik.live/ — content reference for About, projects, skills, certificates, experience and contact. The portfolio uses only Izzwan's supported facts.
 
@@ -10,11 +10,11 @@ Reference source code and personal assets were not copied. The implementation us
 
 ## Palette and layout
 
-Warm paper `#faf8f3`, off-white `#fffdf9`, olive `#4c603c`, charcoal `#272b25`, muted brown `#7d5e43` and light neutral borders. System fonts avoid external font requests. The spacious single-page flow follows introduction, About, projects, focus, skills, education / experience, certificates and contact.
+Warm paper `#faf8f3`, off-white `#fffdf9`, blue `#245ba8`, slate text `#253143`, muted brown `#7d5e43` and light blue-grey borders. Blue is the primary identity accent, reflecting Izzwan's Blue Team direction; brown remains a secondary accent for some project categories. System fonts avoid external font requests. The spacious single-page flow follows introduction, About, projects, focus, skills, education / experience, certificates and contact.
 
 The desktop layout uses two columns for the introduction and About, three for projects and focus areas, and four for skills. At narrower widths these become two or one column. Long project notes open in a dialog instead of expanding every card.
 
-Dark mode uses warm charcoal `#191d18`, cream text `#eee9dc`, sage `#b1c492` and warm brown `#d6b38d`. All section surfaces, decorative diagrams, card art, buttons, borders, navigation and dialogs use theme tokens. Original photographs and documents retain their supplied colours.
+Dark mode uses navy `#151d2b`, cream text `#eee9dc`, sky blue `#8ab9f2` and warm brown `#d6b38d`. All section surfaces, decorative diagrams, card art, buttons, borders, navigation and dialogs use theme tokens. Original photographs and documents retain their supplied colours.
 
 The header's sun/moon button is a labelled native toggle with an `aria-pressed` state and English / Malay tooltips. The site follows `prefers-color-scheme` until an explicit theme is chosen, then remembers `portfolio-theme` in local storage. System changes continue to update the theme before an explicit choice. Theme selection runs in the generated document head before CSS; translation rebuilds the control while preserving the current theme. Storage denial leaves switching available for the current visit. A CSS fallback follows the system theme without JavaScript, with the inactive toggle hidden.
 
@@ -26,7 +26,7 @@ The Pause motion control stops Lenis and removes GSAP effects. The operating sys
 
 The portrait uses an opacity crossfade between the two supplied images. Hover and keyboard focus reveal the second photo. Click / tap toggles it. Reduced motion makes the state change immediate. CSS performs framing without modifying the original image bytes.
 
-The introduction also includes a low-contrast dot grid, slow earthy orbit outlines and four gently drifting points. They use transform-only CSS animation, sit behind the content, ignore pointer events and are hidden from assistive technology. Pause motion and reduced-motion preferences stop these animations too. No additional dependencies are needed.
+The introduction also includes a low-contrast dot grid, slow blue orbit outlines and four gently drifting points. They use transform-only CSS animation, sit behind the content, ignore pointer events and are hidden from assistive technology. Pause motion and reduced-motion preferences stop these animations too. No additional dependencies are needed.
 
 ## Accessibility and behaviour
 

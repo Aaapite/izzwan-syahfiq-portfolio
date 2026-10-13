@@ -13,7 +13,7 @@ The browser page opened from Vite is your live preview; saving source files refr
 
 ## Starting prompt
 
-> Continue this existing portfolio project. Read README.md and docs/VALIDATION.md first. It is an English / Bahasa Melayu Blue Team portfolio with earthy colours, GSAP / ScrollTrigger, Lenis, two-photo portrait hover / tap, subtle background animation and a Vibe Coding project category. Preserve my actual project scope and certificate statuses. Inspect the website in a real browser, fix observed layout or interaction issues, run npm test and npm run build, and document changes. Use only the separate izzwan-syahfiq-portfolio repository; do not modify my other repos. GitHub upload and Vercel / Cloudflare hosting are still pending. Check available GitHub authentication and repository state before committing or pushing.
+> Continue this existing portfolio project. Read README.md and docs/VALIDATION.md first. It is an English / Bahasa Melayu Blue Team portfolio with blue accents, light / dark themes, GSAP / ScrollTrigger, Lenis, two-photo portrait hover / tap, subtle background animation and a Vibe Coding project category. Preserve my actual project scope and certificate statuses. Inspect the website in a real browser, fix observed layout or interaction issues, run npm test and npm run build, and document changes. Use only the separate izzwan-syahfiq-portfolio repository; do not modify my other repos. GitHub source is public; Vercel / Cloudflare hosting is still pending. Check available GitHub authentication and repository state before committing or pushing.
 
 ## Source control and hosting
 

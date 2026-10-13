@@ -29,7 +29,7 @@ The handoff ZIP also includes `PREVIEW.html`. Extract the ZIP and open that file
 ## What is included
 
 - English / Bahasa Melayu switch with a locally remembered preference.
-- Earthy cream, olive, brown and charcoal palette and responsive section navigation.
+- Blue accents, a cream light theme and a navy dark theme with responsive section navigation.
 - Light / dark theme switch beside the language controls. It follows the system preference until a visitor chooses a theme, then remembers that choice locally.
 - Two-photo portrait, keyboard access and mobile tap support.
 - Thirteen project entries, including this website under Vibe Coding, with category filters and project notes in native dialogs.
@@ -37,7 +37,7 @@ The handoff ZIP also includes `PREVIEW.html`. Extract the ZIP and open that file
 - Public GitHub source links only where the repository is currently public.
 - Certificates, a public CV PDF, education and real experience / activities.
 - Email, LinkedIn and GitHub contact links and copy-email feedback.
-- GSAP reveals, gentle scroll scrub, a subtle animated earthy background and Lenis scrolling with a motion-pause control and reduced-motion support.
+- GSAP reveals, gentle scroll scrub, a subtle animated blue background and Lenis scrolling with a motion-pause control and reduced-motion support.
 - Generated English HTML for search engines and visitors without JavaScript.
 
 ## Repository structure

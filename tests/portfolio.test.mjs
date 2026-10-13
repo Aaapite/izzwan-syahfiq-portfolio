@@ -44,7 +44,7 @@ test('Theme preferences, language, project filters, portrait, dialog, menu and c
   systemThemeChanged({ matches: true });
   assert.equal(window.document.documentElement.dataset.theme, 'dark');
   assert.equal(window.document.querySelector('#theme-toggle').getAttribute('aria-pressed'), 'true');
-  assert.equal(window.document.querySelector('meta[name="theme-color"]').content, '#191d18');
+  assert.equal(window.document.querySelector('meta[name="theme-color"]').content, '#151d2b');
   click('#theme-toggle');
   assert.equal(window.localStorage.getItem('portfolio-theme'), 'light');
   systemThemeChanged({ matches: true });

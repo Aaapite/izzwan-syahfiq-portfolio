@@ -6,7 +6,7 @@ export function bootstrapTheme() {
     ? saved
     : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   document.documentElement.dataset.theme = theme;
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#191d18' : '#faf8f3');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#151d2b' : '#faf8f3');
   return theme;
 }
 
