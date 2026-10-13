@@ -32,6 +32,15 @@ Used the Codex in-app Chromium browser against local Vite development and produc
 
 Authenticated connector, browser session and Git Credential Manager identified `Aaapite`. Checked repository existence and remote state before committing/pushing. Created the separate public repository [Aaapite/izzwan-syahfiq-portfolio](https://github.com/Aaapite/izzwan-syahfiq-portfolio) with an empty `main` branch target. The source is maintained there; generated `dist/`, dependencies, local environment files and `PREVIEW.html` are ignored. Personal assets retain the README's ownership terms.
 
+## Dark theme update — 13 October 2026
+
+- Added the earthy dark palette and a sun/moon header toggle in both languages, including remembered choices and initial system preference. No project records, certificate statuses or personal assets changed.
+- Extended the existing interaction tests to cover system-following behavior, explicit preference precedence, head initialization, remembered dark selection, theme state and labels across translation, and blocked storage. All three tests and `npm run build` passed.
+- Reviewed the production preview in real Chromium at 320, 390, 600, 800, 801, 1024 and 1280 CSS pixels in English and Malay. The added control did not introduce horizontal overflow; the narrow menu and project dialog remained usable.
+- Checked keyboard toggling, light and dark choices across reload, translated tooltips, motion pause/resume, dark card surfaces, contact and certificate sections, and native dialog close/focus return. Browser console checks found no warnings or errors.
+- Sampled eight dark-theme text/background token pairs. Contrast ratios ranged from 6.75:1 to 14.08:1; this is a targeted palette check, not a complete accessibility audit.
+- Regenerated the self-contained preview with theme support. The operating system preference itself was not changed during browser review; system-change and blocked-storage behavior were exercised in the interaction test.
+
 ## Remaining deployment checks
 
 Vercel / Cloudflare hosting is still pending. This review verifies local behavior, not a public website deployment. No live website URL, hosting success or independently earned credential is claimed.

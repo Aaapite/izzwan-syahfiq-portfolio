@@ -14,6 +14,10 @@ Warm paper `#faf8f3`, off-white `#fffdf9`, olive `#4c603c`, charcoal `#272b25`, 
 
 The desktop layout uses two columns for the introduction and About, three for projects and focus areas, and four for skills. At narrower widths these become two or one column. Long project notes open in a dialog instead of expanding every card.
 
+Dark mode uses warm charcoal `#191d18`, cream text `#eee9dc`, sage `#b1c492` and warm brown `#d6b38d`. All section surfaces, decorative diagrams, card art, buttons, borders, navigation and dialogs use theme tokens. Original photographs and documents retain their supplied colours.
+
+The header's sun/moon button is a labelled native toggle with an `aria-pressed` state and English / Malay tooltips. The site follows `prefers-color-scheme` until an explicit theme is chosen, then remembers `portfolio-theme` in local storage. System changes continue to update the theme before an explicit choice. Theme selection runs in the generated document head before CSS; translation rebuilds the control while preserving the current theme. Storage denial leaves switching available for the current visit. A CSS fallback follows the system theme without JavaScript, with the inactive toggle hidden.
+
 ## Motion
 
 GSAP animates a brief heading reveal and section entrances. ScrollTrigger connects a gentle portrait shift and diagram-node movement to scroll position with scrub. Lenis smooths mouse-wheel scrolling. Touch scrolling stays native. These effects are restrained so content remains the focus.

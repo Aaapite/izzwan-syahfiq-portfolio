@@ -4,10 +4,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { profile, copy, projects } from './content.js';
 import { render, projectDetails } from './render.js';
+import { bootstrapTheme } from './theme.js';
 
 gsap.registerPlugin(ScrollTrigger);
 const app = document.querySelector('#app');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+let theme = bootstrapTheme();
 let lang = 'en';
 let filter = 'all';
 let expanded = false;
@@ -27,6 +30,27 @@ function savePreference(key, value) {
 const storedLanguage = readPreference('portfolio-language', 'en');
 lang = storedLanguage === 'ms' ? 'ms' : 'en';
 paused = readPreference('portfolio-motion', 'on') === 'off';
+const storedTheme = readPreference('portfolio-theme', null);
+let themePreference = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : null;
+
+function updateThemeControl() {
+  const button = document.querySelector('#theme-toggle');
+  button.setAttribute('aria-pressed', String(theme === 'dark'));
+  button.title = theme === 'dark' ? copy[lang].useLight : copy[lang].useDark;
+}
+function applyTheme(next, remember = false) {
+  theme = next;
+  if (remember) {
+    themePreference = theme;
+    savePreference('portfolio-theme', theme);
+  }
+  document.documentElement.dataset.theme = theme;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#191d18' : '#faf8f3');
+  updateThemeControl();
+}
+systemDark.addEventListener('change', event => {
+  if (themePreference === null) applyTheme(event.matches ? 'dark' : 'light');
+});
 
 function stopAnimation() {
   animationContext?.revert();
@@ -118,12 +142,17 @@ function applyLanguage(next, restoreFocus = false) {
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', copy[lang].title);
   document.querySelector('meta[property="og:description"]')?.setAttribute('content', copy[lang].description);
   app.innerHTML = render(lang);
+  updateThemeControl();
   wireDialog();
   updateProjects();
   setupAnimation();
   if (restoreFocus) document.querySelector(`[data-language="${lang}"]`).focus({ preventScroll: true });
 }
 app.addEventListener('click', async event => {
+  if (event.target.closest('#theme-toggle')) {
+    applyTheme(theme === 'dark' ? 'light' : 'dark', true);
+    return;
+  }
   const languageButton = event.target.closest('[data-language]');
   if (languageButton) { applyLanguage(languageButton.dataset.language, true); return; }
   const filterButton = event.target.closest('[data-filter]');

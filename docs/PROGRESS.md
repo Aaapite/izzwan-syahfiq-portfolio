@@ -36,3 +36,12 @@
 - Updated only the portfolio project's source link and progress text. Other project scope, statuses and certificate records were preserved.
 
 Next: connect this repository to the chosen Vercel / Cloudflare provider, then repeat the deployment checks in `VALIDATION.md` on the actual public website.
+
+### Dark theme
+
+- Added a theme toggle beside EN / BM with translated labels, keyboard operation and a remembered preference.
+- Added warm charcoal surfaces, sage accents and cream text across sections, card artwork, navigation, controls and project dialogs.
+- Applied initial theme selection in the generated document head and preserved automatic system-following until the visitor chooses a theme.
+- Kept theme state across translation and kept the compact header usable down to 320px.
+- Extended existing interaction coverage, passed tests/build, reviewed dark mode in the production browser preview, and regenerated `PREVIEW.html`.
+- Preserved all project descriptions/statuses, certificate records and personal assets. Hosting remains pending.

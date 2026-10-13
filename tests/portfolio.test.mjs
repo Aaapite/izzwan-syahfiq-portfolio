@@ -4,6 +4,7 @@ import { build } from 'esbuild';
 import { Window } from 'happy-dom';
 import { render, projectDetails } from '../src/render.js';
 import { copy, projects } from '../src/content.js';
+import { initialThemeScript } from '../src/theme.js';
 
 test('Both languages have semantic sections, working destinations and honest project status', () => {
   for (const lang of ['en', 'ms']) {
@@ -24,16 +25,33 @@ test('Both languages have semantic sections, working destinations and honest pro
   }
 });
 
-test('Language, project filters, portrait toggle, dialog, menu and copy feedback work together', async () => {
+test('Theme preferences, language, project filters, portrait, dialog, menu and copy feedback work together', async () => {
   const bundle = await build({ entryPoints: ['src/main.js'], bundle: true, write: false, format: 'iife', platform: 'browser', loader: { '.css': 'empty' } });
   const window = new Window({ url: 'https://portfolio.example/', settings: { enableJavaScriptEvaluation: true } });
   // Reduced motion avoids running layout-dependent GSAP effects in a simulated DOM.
-  window.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} });
-  window.document.head.innerHTML = '<meta name="description" content="">';
+  let systemThemeChanged;
+  window.matchMedia = query => query === '(prefers-color-scheme: dark)'
+    ? { matches: false, addEventListener(_event, listener) { systemThemeChanged = listener; } }
+    : { matches: true, addEventListener() {}, removeEventListener() {} };
+  window.document.head.innerHTML = '<meta name="description" content=""><meta name="theme-color" content="#faf8f3">';
+  window.localStorage.setItem('portfolio-theme', 'invalid');
+  window.eval(initialThemeScript); // Runs before the app is mounted, as in the generated head.
+  assert.equal(window.document.documentElement.dataset.theme, 'light');
   window.document.body.innerHTML = `<div id="app">${render('en')}</div>`;
   window.eval(bundle.outputFiles[0].text);
   const click = selector => window.document.querySelector(selector).click();
   const visible = () => [...window.document.querySelectorAll('[data-project]')].filter(card => !card.hidden);
+  systemThemeChanged({ matches: true });
+  assert.equal(window.document.documentElement.dataset.theme, 'dark');
+  assert.equal(window.document.querySelector('#theme-toggle').getAttribute('aria-pressed'), 'true');
+  assert.equal(window.document.querySelector('meta[name="theme-color"]').content, '#191d18');
+  click('#theme-toggle');
+  assert.equal(window.localStorage.getItem('portfolio-theme'), 'light');
+  systemThemeChanged({ matches: true });
+  assert.equal(window.document.documentElement.dataset.theme, 'light'); // An explicit choice beats system changes.
+  click('#theme-toggle');
+  window.eval(initialThemeScript);
+  assert.equal(window.document.documentElement.dataset.theme, 'dark'); // Saved dark beats a light system on reload.
   assert.equal(visible().length, 6);
   click('#show-more'); assert.equal(visible().length, 13);
   click('[data-filter="vibe"]'); assert.deepEqual(visible().map(card => card.dataset.project), ['portfolio']);
@@ -41,6 +59,9 @@ test('Language, project filters, portrait toggle, dialog, menu and copy feedback
   click('.close-dialog');
   click('[data-filter="systems"]'); assert.deepEqual(visible().map(card => card.dataset.project), ['nadi', 'eva']);
   click('[data-language="ms"]'); assert.equal(window.document.documentElement.lang, 'ms');
+  assert.equal(window.document.documentElement.dataset.theme, 'dark');
+  assert.equal(window.document.querySelector('#theme-toggle').getAttribute('aria-label'), copy.ms.darkMode);
+  assert.equal(window.document.querySelector('#theme-toggle').title, copy.ms.useLight);
   assert.equal(window.document.querySelector('h1').textContent, 'BakalBlue Teamer.');
   assert.equal(visible().length, 2); // Preserve the selected category after translating.
   click('#portrait'); assert.equal(window.document.querySelector('#portrait').getAttribute('aria-pressed'), 'true');
@@ -71,9 +92,12 @@ test('GSAP and Lenis initialise and the pause control restores visible content',
   const bundle = await build({ entryPoints: ['src/main.js'], bundle: true, write: false, format: 'iife', platform: 'browser', loader: { '.css': 'empty' } });
   const window = new Window({ url: 'https://portfolio.example/', settings: { enableJavaScriptEvaluation: true } });
   window.matchMedia = query => ({ media: query, matches: false, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} });
+  Object.defineProperty(window, 'localStorage', { get() { throw new Error('Storage blocked'); } });
   window.document.head.innerHTML = '<meta name="description" content="">';
   window.document.body.innerHTML = `<div id="app">${render('en')}</div>`;
   window.eval(bundle.outputFiles[0].text);
+  window.document.querySelector('#theme-toggle').click();
+  assert.equal(window.document.documentElement.dataset.theme, 'dark'); // Storage denial must not break switching.
   assert.equal(window.document.querySelector('#motion-toggle').getAttribute('aria-pressed'), 'false');
   window.document.querySelector('#motion-toggle').click();
   assert.equal(window.document.querySelector('#motion-toggle').getAttribute('aria-pressed'), 'true');

@@ -30,6 +30,7 @@ The handoff ZIP also includes `PREVIEW.html`. Extract the ZIP and open that file
 
 - English / Bahasa Melayu switch with a locally remembered preference.
 - Earthy cream, olive, brown and charcoal palette and responsive section navigation.
+- Light / dark theme switch beside the language controls. It follows the system preference until a visitor chooses a theme, then remembers that choice locally.
 - Two-photo portrait, keyboard access and mobile tap support.
 - Thirteen project entries, including this website under Vibe Coding, with category filters and project notes in native dialogs.
 - Explicit documented-lab, academic, proposal and in-development labels.
@@ -45,6 +46,7 @@ The handoff ZIP also includes `PREVIEW.html`. Extract the ZIP and open that file
 src/content.js           English / Malay content, project data and links
 src/render.js            Semantic page and project-note templates
 src/main.js              Language, filters, dialogs, portrait and animations
+src/theme.js             Theme selection before first paint
 src/style.css            Palette, layout, responsive states and hover effects
 public/images/           Two original supplied portraits
 public/documents/        Public CV PDF and three supplied certificates

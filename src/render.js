@@ -48,7 +48,8 @@ export function render(lang = 'en') {
     <a class="brand" href="#home" aria-label="${escape(profile.name)}"><span class="brand-mark" aria-hidden="true">IS<span>↗</span></span><span>Izzwan<span class="brand-surname"> Syahfiq</span><span class="brand-dot">.</span></span></a>
     <div class="header-controls"><button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="navigation">${escape(c.menu)} <span aria-hidden="true">☰</span></button>
     <nav id="navigation" aria-label="${escape(c.navLabel)}">${ids.map((id, i) => `<a href="#${id}">${escape(c.nav[i])}</a>`).join('')}</nav>
-    <div class="language-switch" role="group" aria-label="Language / Bahasa"><button data-language="en" aria-pressed="${lang === 'en'}" lang="en">EN</button><span aria-hidden="true">/</span><button data-language="ms" aria-pressed="${lang === 'ms'}" lang="ms">BM</button></div></div>
+    <div class="language-switch" role="group" aria-label="Language / Bahasa"><button data-language="en" aria-pressed="${lang === 'en'}" lang="en">EN</button><span aria-hidden="true">/</span><button data-language="ms" aria-pressed="${lang === 'ms'}" lang="ms">BM</button></div>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="${escape(c.darkMode)}" aria-pressed="false" title="${escape(c.useDark)}"><svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.3 14.3A8.6 8.6 0 0 1 9.7 3.7a8.6 8.6 0 1 0 10.6 10.6Z"/></svg><svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></div>
   </header>
   <main id="main">
     <section id="home" class="hero">
