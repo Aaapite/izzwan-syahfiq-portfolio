@@ -52,3 +52,10 @@ Next: connect this repository to the chosen Vercel / Cloudflare provider, then r
 - Updated the green-tinted section surfaces, illustration backgrounds, ambient details, browser colour metadata and favicon. Renamed the CSS colour tokens to `--accent` / `--accent-soft`.
 - Checked both themes in the browser, including the narrow Malay navigation and dialog; sampled text contrast remained above 4.5:1.
 - Passed tests/build, regenerated the offline preview and updated design/handoff notes. Project and certificate content was preserved.
+
+### Social icons and Foundation GPA
+
+- Replaced text social/contact actions with GitHub, LinkedIn and email SVG icons, with accessible names, tooltips and 44px targets.
+- Kept the public email selectable and retained its copy action and feedback.
+- Removed the Foundation GPA in both languages and removed the resulting empty organisation line.
+- Checked keyboard access, desktop and phone layout, both themes and email-copy feedback; passed tests/build and regenerated the preview.

@@ -34,4 +34,6 @@ Semantic navigation and sections, one H1, visible focus outlines, a skip link, l
 
 The language preference uses the standard `ms` locale and a visible BM button. Translation updates content, title, description and the document's language. Project filtering is retained when changing language. The CV and certificates remain in the language of their original documents.
 
+Social profile and email actions use inline SVG icons with 44px circular targets in the introduction and contact section. Each link has an accessible name and a tooltip; the email action label follows the selected language. The contact address is selectable text with a copy button. Foundation education displays its title, completion date and description; its GPA was removed at Izzwan's request.
+
 The website makes no live GitHub requests. It links to public sources explicitly; repository visibility and project outcomes should be reviewed as work progresses. It includes no analytics, tracking scripts, embedded social feeds or backend contact form.

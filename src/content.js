@@ -58,7 +58,7 @@ export const copy = {
     education: 'Education', experience: 'Experience & activities',
     educationItems: [
       { date: 'Expected 2027', title: 'Bachelor of Information Technology (Hons) in Computer System Security', org: 'Universiti Kuala Lumpur MIIT', text: 'Relevant coursework: network security, cloud security and incident response.' },
-      { date: 'Completed August 2024', title: 'Foundation in Computer Technology', org: 'GPA 3.70 / 4.00', text: 'A foundation for my degree and practical computing work.' },
+      { date: 'Completed August 2024', title: 'Foundation in Computer Technology', text: 'A foundation for my degree and practical computing work.' },
     ],
     experienceItems: [
       { date: 'March – May 2025', title: 'Logistics & Quality Assurance Member', org: 'National Flag Pin Distribution', text: 'Checked product quality and supported packaging, inventory tracking and distribution logistics.' },
@@ -120,7 +120,7 @@ export const copy = {
     education: 'Pendidikan', experience: 'Pengalaman & aktiviti',
     educationItems: [
       { date: 'Dijangka tamat 2027', title: 'Bachelor of Information Technology (Hons) in Computer System Security', org: 'Universiti Kuala Lumpur MIIT', text: 'Kursus berkaitan: keselamatan rangkaian, keselamatan awan dan tindak balas insiden.' },
-      { date: 'Tamat Ogos 2024', title: 'Foundation in Computer Technology', org: 'GPA 3.70 / 4.00', text: 'Asas untuk pengajian ijazah dan kerja pengkomputeran praktikal saya.' },
+      { date: 'Tamat Ogos 2024', title: 'Foundation in Computer Technology', text: 'Asas untuk pengajian ijazah dan kerja pengkomputeran praktikal saya.' },
     ],
     experienceItems: [
       { date: 'Mac – Mei 2025', title: 'Ahli Logistik & Jaminan Kualiti', org: 'Pengedaran Pin Bendera Kebangsaan', text: 'Memeriksa kualiti produk serta membantu pembungkusan, rekod inventori dan logistik pengedaran.' },

@@ -36,7 +36,7 @@ The handoff ZIP also includes `PREVIEW.html`. Extract the ZIP and open that file
 - Explicit documented-lab, academic, proposal and in-development labels.
 - Public GitHub source links only where the repository is currently public.
 - Certificates, a public CV PDF, education and real experience / activities.
-- Email, LinkedIn and GitHub contact links and copy-email feedback.
+- Email, LinkedIn and GitHub contact icons with accessible labels, tooltips and copy-email feedback.
 - GSAP reveals, gentle scroll scrub, a subtle animated blue background and Lenis scrolling with a motion-pause control and reduced-motion support.
 - Generated English HTML for search engines and visitors without JavaScript.
 

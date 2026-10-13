@@ -49,6 +49,13 @@ Authenticated connector, browser session and Git Credential Manager identified `
 - `npm test` passed all three tests, `npm run build` passed, and `npm run export:preview` regenerated the standalone preview. Updated the current design and handoff guidance to retain the blue identity.
 - Project content, certificate statuses, photographs and document bytes were preserved. Hosting remains pending.
 
+## Contact icons and Foundation detail — 13 October 2026
+
+- Converted GitHub, LinkedIn and email profile/contact actions to inline SVG icons with 44px targets, accessible names and tooltips. Confirmed all six icon links retained the intended destinations and their visible text was empty.
+- Removed the Foundation GPA from the English and Malay education entries and omitted the empty organisation line. Checked the rendered Foundation entry and confirmed GPA text was absent from source content and generated HTML.
+- Reviewed desktop introduction/education and the 320px Malay contact section in both themes. Keyboard navigation reached the icon links; translated email names and copy-email success feedback worked. No horizontal overflow or console errors were found.
+- `npm test` passed all three tests, `npm run build` passed, and `npm run export:preview` regenerated the offline preview. Project records, certificate statuses, photographs and downloadable documents were preserved.
+
 ## Remaining deployment checks
 
 Vercel / Cloudflare hosting is still pending. This review verifies local behavior, not a public website deployment. No live website URL, hosting success or independently earned credential is claimed.
