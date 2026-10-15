@@ -1,5 +1,7 @@
 # Continue in Codex
 
+For the one-time local project and ChatGPT Project setup, follow [PROJECT-SETUP.md](PROJECT-SETUP.md). Future Codex chats should read the repository's root `AGENTS.md` and [current context](PROJECT-CONTEXT.md).
+
 Open the extracted `izzwan-syahfiq-portfolio` folder as a Codex project on your computer. Use that exact folder, separately from your existing repositories. The package includes source, personal assets, tests, docs, a lockfile and `PREVIEW.html`.
 
 Use the development server for ongoing code changes:

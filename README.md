@@ -61,6 +61,8 @@ wrangler.jsonc           Optional Cloudflare Workers static-assets configuration
 
 ## Edit and deploy
 
+- [Set up Codex and ChatGPT Projects for future changes](docs/PROJECT-SETUP.md)
+- [Current project context](docs/PROJECT-CONTEXT.md)
 - [Editing content and adding projects](docs/EDITING.md)
 - [Vercel and Cloudflare deployment](docs/DEPLOYMENT.md)
 - [Design and animation decisions](docs/DESIGN.md)

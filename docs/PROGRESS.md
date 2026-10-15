@@ -59,3 +59,10 @@ Next: connect this repository to the chosen Vercel / Cloudflare provider, then r
 - Kept the public email selectable and retained its copy action and feedback.
 - Removed the Foundation GPA in both languages and removed the resulting empty organisation line.
 - Checked keyboard access, desktop and phone layout, both themes and email-copy feedback; passed tests/build and regenerated the preview.
+
+## 15 October 2026 — reusable project setup
+
+- Added root `AGENTS.md` so new Codex chats in the repository inherit the source boundaries, owner preferences and verification workflow.
+- Added `PROJECT-CONTEXT.md`, paste-ready ChatGPT project instructions and a one-time project setup guide, linked from the README and handoff.
+- Verified six setup/context files and fourteen relative Markdown links, then checked the Git diff. This was a documentation-only change; application/browser checks were not rerun.
+- The two project entries still require the owner's one-time creation/folder selection in the app UI. The source repository remains the shared source of truth.
