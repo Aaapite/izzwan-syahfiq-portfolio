@@ -1,6 +1,8 @@
 # Deploy to Vercel or Cloudflare
 
-The same static build works with either provider. Nothing has been deployed as part of this delivery. Use a provider's free plan and included hostname for this personal portfolio; a custom paid domain is optional and unnecessary. No payment service, AI API or database is used by the website.
+The portfolio is live at [izzwan-syahfiq-portfolio.vercel.app](https://izzwan-syahfiq-portfolio.vercel.app). The Hermes redesign was deployed from `5be8022` on 19 October 2026. The existing Vercel project is `izzwan-syahfiq-portfolio` under `white-tiger3` (White Tiger, Hobby), linked to `Aaapite/izzwan-syahfiq-portfolio` on `main`. Reuse this project for future updates. See [validation](VALIDATION.md) for release evidence.
+
+The frontend remains a static Vite build. Its guestbook uses the dedicated White Tiger Free-tier Supabase project described in [guestbook setup](GUESTBOOK.md). No billing, paid trial or custom domain was added. Cloudflare instructions below are alternatives for a future migration, not a second deployed site.
 
 ## Build settings
 
@@ -13,15 +15,15 @@ The same static build works with either provider. Nothing has been deployed as p
 | Build command | `npm run build` |
 | Output directory | `dist` |
 | Node.js | 22.12 or newer; use a currently supported 22 or 24 release |
-| Environment variables | None |
+| Environment variables | `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` (public configuration) |
 
 ## Vercel
 
-1. In Vercel, add a new project and import the portfolio repository from GitHub. Grant access to that repository rather than all repositories where possible.
+1. For this portfolio, reuse the existing verified project above. Only for a new environment, import the portfolio repository into a separate project with narrowly scoped GitHub access.
 2. Select the Vite framework preset. Keep the root at the repository root. The included `vercel.json` specifies `npm run build` and `dist`.
-3. Choose the free Hobby plan for this personal portfolio. No environment variables are needed.
+3. Keep the free Hobby plan. The existing project has both public guestbook variables in Production, Preview and Development. Provider client secrets stay only in Supabase, never in `VITE_` variables or the repository.
 4. Deploy and open the generated `vercel.app` address.
-5. Confirm both languages, the portrait swap, project notes, the CV and all certificate links.
+5. Confirm both languages, themes, motion, portrait swap, project notes, the CV/certificates and both guestbook sign-in flows. Supabase's Site URL and exact allowed return URLs must match the real origin; update those settings before migrating to another hostname.
 
 Future commits to the connected production branch rebuild the site. Branches can generate previews. If you roll back, revert the relevant Git commit too so a later deployment does not restore the unwanted change.
 

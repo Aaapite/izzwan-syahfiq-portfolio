@@ -6,6 +6,9 @@ import { profile, certificates } from '../src/content.js';
 const root = new URL('../', import.meta.url);
 const bundle = await build({ entryPoints: [fileURLToPath(new URL('../src/main.js', import.meta.url))], bundle: true, write: false, format: 'iife', minify: true, define: { 'import.meta.env': '{}' }, loader: { '.css': 'empty' } });
 let script = bundle.outputFiles[0].text;
+// A dependency may contain literal control characters inside JavaScript strings.
+// Escape them before embedding so HTML parsers accept the standalone document.
+const escapeInlineScript = source => source.replaceAll('</script', '<\\/script').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, char => `\\u${char.charCodeAt(0).toString(16).padStart(4, '0')}`);
 let html = await readFile(new URL('dist/index.html', root), 'utf8');
 const files = [...profile.portraits, profile.cv, ...certificates.map(c => c.file).filter(Boolean), '/images/guardian-engraving.webp', ...['git', 'python', 'docker', 'kubernetes'].map(name => `/icons/${name}.svg`), '/privacy.html', '/terms.html'];
 const policyDownloads = {};
@@ -25,9 +28,9 @@ for (const font of assets.filter(file => /\.woff2?$/.test(file))) {
   css = css.replaceAll('/assets/' + font, data);
 }
 html = html.replace(/<link[^>]+rel="stylesheet"[^>]*>/g, '').replace(/<script[^>]+type="module"[^>]*><\/script>/g, '').replace(/<link[^>]+rel="icon"[^>]*>/g, '');
-html = html.replace('</head>', `<style>${css}</style></head>`);
+html = html.replace('</head>', () => `<style>${css}</style></head>`);
 // Browsers restrict top-level data-URL navigation. Download the embedded documents instead.
 const downloadFix = `document.querySelectorAll('a[href^="data:"]').forEach(a=>{a.removeAttribute('target');a.setAttribute('download',offlinePolicyFiles[a.href.split('#')[0]]??(a.href.startsWith('data:application/pdf')?'certificate-or-cv.pdf':'certificate.png'))});`;
-html = html.replace('</body>', `<script>${script.replaceAll('</script', '<\\/script')};const offlinePolicyFiles=${JSON.stringify(policyDownloads)};${downloadFix}document.querySelector('#app').addEventListener('click',()=>setTimeout(()=>{${downloadFix}},0));</script></body>`);
+html = html.replace('</body>', () => `<script>${escapeInlineScript(script)};const offlinePolicyFiles=${JSON.stringify(policyDownloads)};${downloadFix}document.querySelector('#app').addEventListener('click',()=>setTimeout(()=>{${downloadFix}},0));</script></body>`);
 await writeFile(new URL('PREVIEW.html', root), html);
 console.log('Exported a self-contained offline preview. Deploy dist/, not PREVIEW.html.');

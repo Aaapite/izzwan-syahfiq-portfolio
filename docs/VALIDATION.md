@@ -2,26 +2,37 @@
 
 ## Hermes redesign implementation — 19 October 2026
 
-This section supersedes the older pending-hosting and design-only status below. The owner reviewed the Figma proposal and explicitly authorized the requested revisions, GitHub upload and deployment. The existing original website was verified at [izzwan-syahfiq-portfolio.vercel.app](https://izzwan-syahfiq-portfolio.vercel.app); release of the redesigned code is not yet confirmed at this snapshot.
+This section supersedes the older pending-hosting and design-only status below. The owner reviewed the Figma proposal and explicitly authorized the requested revisions, GitHub upload and deployment. The redesigned website is live at [izzwan-syahfiq-portfolio.vercel.app](https://izzwan-syahfiq-portfolio.vercel.app).
+
+### Verified production release
+
+- Application commit [`5be8022b48c264849e3f83bd9c342dd6d99b72d8`](https://github.com/Aaapite/izzwan-syahfiq-portfolio/commit/5be8022b48c264849e3f83bd9c342dd6d99b72d8) was pushed to `main`, triggering Vercel's Git build. Production deployment `dpl_61cK7pCgXMuQqNPBs9nvTpHbjv9G` was verified Ready through CLI/API inspection against the exact commit/project and public alias above, after the connector returned 403.
+- All twelve production HTTP paths returned 200 with expected content types: homepage, privacy, terms, guardian artwork, four technology SVGs, CV and three certificates. Confirmed `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY` and the intended referrer policy.
+- Reviewed production at 1149px in dark mode: hero images loaded, portrait border was zero and there was no horizontal overflow. At 390px BM/light, checked no overflow, menu closure after an anchor, four Cloud results, project dialog opening and clean Escape closure. BM/light/paused-motion preferences survived reload and all three interests remained statically visible. Production console checks returned no warnings or errors.
+- GitHub production OAuth returned the signed-in `Aaapite` account; its submitted note was verified in the database and appeared to an anonymous session in a separate browser. Google production OAuth returned the intended public-contact account; its post showed the success message and the corresponding database row/author were verified. Production sign-out worked.
+- All five temporary QA records were hidden after verification. A database check confirmed zero visible notes and five hidden test notes; they were retained reversibly rather than deleted.
+- Owner role/app metadata and visible moderation controls were verified, and SQL moderation passed. The complete browser hide flow remains unverified: automation could not control its native confirmation, and no verified success status followed the owner's manual acceptance. Do not describe this as full UI moderation acceptance.
 
 ### Automated and source checks
 
-- Reran `npm test`, `npm run build` and `npm run export:preview` sequentially after the OAuth callback-error fix on Node 24.12.0. All twelve tests passed. Vite 7.3.7 completed the production build; the content check validated two languages, thirteen projects, six training entries and eleven local assets. The offline preview was regenerated successfully.
+- The final `npm test`, `npm run build` and `npm run export:preview` passed on Node 24.12.0 after the OAuth callback and policy-embedding fixes. All twelve tests passed. Vite 7.3.7 completed the production build; the content check validated two languages, thirteen projects, six training entries and thirteen local assets. The offline preview was regenerated successfully, including correctly named HTML policy downloads.
 - Existing interaction tests cover theme/language preferences, filters, dialogs, menu Escape, portrait toggling, copy feedback and GSAP/Lenis cleanup. Updated checks verify four decorative technology icons, the engraving, icon-only labelled CV links and no university mentions outside My Journey in either rendered language.
 - Nine guestbook tests cover public configuration validation, Unicode-aware note limits, safe text rendering, unavailable/provider states, mocked posting/replies, tab-local drafts through translation, OAuth redirect construction, transport errors, cleanup and late initialization. Three regression checks verify query/fragment OAuth errors, retained callback error feedback after note loading, preserved unrelated URL parameters/section hashes, and PKCE initialization errors even when session lookup succeeds. These are client/mocked-transport checks, not successful provider sign-in.
-- Source review found and corrected dynamic icon paths that would escape offline embedding, and a guestbook heading font-family mismatch. The exporter embeds local fonts, artwork, technology icons, original portraits and downloadable documents; it deliberately excludes live guestbook configuration.
+- Source review found and corrected dynamic icon paths that would escape offline embedding, and a guestbook heading font-family mismatch. The exporter embeds local fonts, artwork, technology icons, original portraits, downloadable documents and policy pages; it deliberately excludes live guestbook configuration.
+- A final offline-export check caught literal dependency control characters and replacement-string expansion corrupting embedded JavaScript. The exporter now escapes those controls and injects scripts/styles through replacement callbacks. Regenerated the preview, verified both JavaScript blocks compile and the JSON-LD parses, and confirmed no invalid C0 characters remain. These export-only changes do not change the deployed application bundle.
+- Served the final corrected standalone preview through Vite on port 5180: HTTP 200. Real-browser review confirmed BM translation, theme switching, all seven embedded hero images, loaded fonts, icon-only CV controls and correctly named embedded privacy/terms downloads; no console warnings/errors were recorded. Direct `file://` use and every document download were not separately exercised.
 - The oversized background name and decorative portrait border/background are absent. Original portraits and CV/certificate documents were retained; the photo backgrounds remain part of the original photos. Git, Python, Docker and Kubernetes use a bounded 38-second transform orbit, and pause/reduced motion clear the typing/ticker effects while showing complete interest labels.
 
 ### Dedicated guestbook backend
 
 - Provisioned only the owner-selected White Tiger Free-tier Singapore project `izzwan-portfolio-guestbook` (`afmnsdfapykwnyuuktnl`) after the verified $0/month quote. Applied the `portfolio_guestbook` and `guestbook_policy_cleanup` migrations. Public note reading works; no unrelated project was changed.
 - The transactional SQL smoke script passed anonymous read/write checks, forged-identity rejection, ownership restrictions, 501-character rejection, throttling, one-level replies, duplicate rejection, bans, moderator hiding and hidden-note visibility. All fixture users/notes were rolled back; a follow-up query confirmed zero notes, auth users and throttle records.
-- Initial database RLS/policy checks passed. The latest security advisor includes a disabled leaked-password-protection warning; that control requires Pro and no upgrade was made. The unused email/password provider was disabled in its settings UI for the requested social-only login; its public-settings recheck remains pending. Performance advisors reported informational unused indexes on the new empty table. The browser uses only a public publishable key; service-role credentials were not requested or embedded.
+- Initial database RLS/policy checks passed. The latest security advisor includes a disabled leaked-password-protection warning; that control requires Pro and no upgrade was made. Public auth settings confirm GitHub/Google enabled, email/password disabled and anonymous sign-in disabled. Performance advisors reported informational unused indexes on the new table. The browser uses only a public publishable key; service-role credentials were not requested or embedded.
 - Supabase's Site URL is the verified production origin, with exact `https://izzwan-syahfiq-portfolio.vercel.app/?guestbook=1` and `http://localhost:5173/?guestbook=1` redirect entries. Both public build variables were saved in all three Vercel environments. No provider secret was added to a public build variable.
 - Both GitHub and Google are configured/enabled, verified through public authentication settings. GitHub application `3944279` belongs to `Aaapite`. Google project `izzwan-portfolio-sign-in` is unbilled, uses the public support contact and has an In production OAuth app with basic profile/email scopes only. Provider secrets remain outside the source/public build variables. Public bilingual privacy and terms pages were added.
 - Actual GitHub and Google OAuth returns to localhost displayed signed-in UI. A GitHub note/reply persisted across reload and appeared to an anonymous session in a separate browser; a too-soon post produced the per-minute error. Google's first posting attempt had a generic transient failure; reload/retry succeeded and its note was visible. The transient cause is not claimed resolved.
-- With explicit owner approval, the verified `Aaapite` auth UUID was assigned private moderator membership and server-managed app metadata, both read back. The refreshed browser UI hide action remains pending.
-- Production-origin OAuth/posting, concurrency/daily-limit exercises and final real-session moderation/cleanup remain pending. Local OAuth success is not production-origin verification. See [guestbook setup](GUESTBOOK.md) for the detailed release boundary.
+- With explicit owner approval, the verified `Aaapite` auth UUID was assigned private moderator membership and server-managed app metadata, both read back. Visible owner controls were verified; the full browser hide action has the limitation described in the production section above.
+- Both providers' production OAuth/posting and QA-content hiding are verified above. Large concurrency/daily-limit exercises remain unperformed. See [guestbook verification](GUESTBOOK.md) for the detailed scope.
 
 ### Current local browser review
 
@@ -30,12 +41,12 @@ This section supersedes the older pending-hosting and design-only status below. 
 - At 320px, language, theme and paused-motion preferences survived reload; all three interest labels remained statically visible while paused. The mobile menu opened, closed on Escape and closed after an anchor selection. The Cloud filter showed four projects.
 - The Kubernetes project dialog fit the 320px phone width and 680px viewport height, supported internal content review and closed with Escape. The top anchor returned to scroll position zero.
 - Technology-icon transforms changed across real-time samples. The portrait border measured zero and the guardian/portrait centers were aligned within one pixel. Portrait tapping toggled both photo states.
-- These are browser checks of the current local app, including the later real provider posting tests above. A physical touch device, operating-system preference changes, every offline-file interaction and production-origin OAuth were not verified by these checks.
+- These are local browser checks; the separate production checks are recorded above. A physical touch device, operating-system reduced-motion preference changes and every offline-file interaction were not verified.
 
-### Figma and production boundaries
+### Figma boundary
 
 - A minimal revision read again returned the existing Starter MCP tool-call limit. No revised Figma nodes or `overview-v2.png` export were created. The linked frames and original exports are the earlier reviewed proposal and are stale relative to the latest owner revisions.
-- The original design-only visual checks and earlier application browser checks below remain historical evidence. Neither they nor the local review above verifies deployment of the redesigned production release. Record its HTTPS checks and actual provider-session results after they pass.
+- The original design-only visual checks and earlier application checks below remain historical evidence. The verified production release and provider-session results are recorded separately above; the stale Figma frames do not represent the final deployed composition.
 
 ## Figma design proposal — 19 October 2026
 
@@ -102,15 +113,11 @@ Authenticated connector, browser session and Git Credential Manager identified `
 - Reviewed desktop introduction/education and the 320px Malay contact section in both themes. Keyboard navigation reached the icon links; translated email names and copy-email success feedback worked. No horizontal overflow or console errors were found.
 - `npm test` passed all three tests, `npm run build` passed, and `npm run export:preview` regenerated the offline preview. Project records, certificate statuses, photographs and downloadable documents were preserved.
 
-## Remaining release checks
+## Remaining verification limits
 
-The existing original Vercel website is verified at [izzwan-syahfiq-portfolio.vercel.app](https://izzwan-syahfiq-portfolio.vercel.app). Publishing and verifying the new Hermes-inspired release remain pending at this snapshot. Earlier statements that no hosting URL was known describe the historical handoffs, not the current verified origin.
+The Hermes-inspired release, both production provider sign-ins and posting are verified at [izzwan-syahfiq-portfolio.vercel.app](https://izzwan-syahfiq-portfolio.vercel.app). Earlier pending-hosting statements describe historical handoffs. The remaining limits are:
 
-Before closing the current release:
-
-1. Deploy the verified redesigned build to the existing intended Vercel project, then repeat language, portrait, phone menu, filters, dialogs, typewriter/orbit and motion checks on the actual HTTPS website.
-2. Verify the CV, certificate, verification, GitHub and LinkedIn links from that deployment.
-3. Check the operating system's reduced-motion setting and a physical touch device. Reduced-motion behavior is covered by the simulated-DOM tests; this session did not change the operating system preference or use physical touch hardware.
-4. Review caching, response headers, console/network errors and direct section links on the deployed origin.
-5. Complete and verify the configured guestbook providers, OAuth callbacks, persistence and ownership/moderation with real sessions. Keep unavailable sign-in choices disabled until they are ready.
-6. Record the source commit and verified deployment result; add canonical/social URL metadata only for the confirmed website origin.
+1. Physical touch hardware and an actual operating-system reduced-motion preference change were not tested; simulated-DOM reduced-motion and browser pause behavior passed.
+2. Large concurrent submissions and the complete daily quota were not exercised. The per-minute rejection and transactional SQL throttle/access-rule smoke checks passed.
+3. Complete browser confirmation-to-success verification for the moderator hide action remains unverified; owner controls and SQL moderation passed.
+4. Figma quota still prevents refreshing the editable frames to match the deployed revisions. No replacement Figma screenshot is claimed.

@@ -1,6 +1,6 @@
 # Hermes-inspired portfolio design review
 
-Prepared on 19 October 2026. This file records the original editable Figma proposal that the owner reviewed. The website source now implements the requested revisions; the Figma frames and saved exports remain the earlier proposal because the existing Starter MCP quota blocked the revision attempt. Deployment of the revised website is not yet confirmed at this snapshot.
+Prepared on 19 October 2026. This file records the original editable Figma proposal that the owner reviewed. The revised website is now live at [izzwan-syahfiq-portfolio.vercel.app](https://izzwan-syahfiq-portfolio.vercel.app), with application commit `5be8022` deployed and verified Ready. The Figma frames and saved exports remain the earlier proposal because the existing Starter MCP quota blocked the revision attempt.
 
 [Open the editable Figma overview](https://www.figma.com/design/x8JPs7EHFCyF7YUpufRnio?node-id=8-526).
 

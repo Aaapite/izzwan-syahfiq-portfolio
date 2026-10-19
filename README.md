@@ -24,7 +24,7 @@ npm run preview
 
 The build produces `dist/`. The portfolio builds without environment variables; the shared guestbook uses the dedicated Supabase backend and the public build variables documented in [guestbook setup](docs/GUESTBOOK.md). Without that configuration the drawer offers an honest unavailable state and email alternative. Public files in `public/` are copied into the deployment. Provider secrets and service-role credentials never belong in the browser bundle.
 
-Generate `PREVIEW.html` after building with `npm run export:preview`. It embeds the content, scripts, styling, fonts and personal assets for an offline preview. Certificate and CV links download embedded copies in this preview; the deployed site opens their normal URLs. The offline guestbook uses the unavailable state and email alternative; shared notes and sign-in need the configured HTTPS website. Clipboard features can be restricted in a local file. Check [the validation record](docs/VALIDATION.md) for the browser checks actually completed. Deploy `dist/`, not the preview file.
+Generate `PREVIEW.html` after building with `npm run export:preview`. It embeds the content, scripts, styling, fonts, personal assets and policy pages for an offline preview. Certificate, CV and policy links download embedded copies in this preview; the deployed site opens their normal URLs. The offline guestbook uses the unavailable state and email alternative; shared notes and sign-in need the configured HTTPS website. Clipboard features can be restricted in a local file. Check [the validation record](docs/VALIDATION.md) for the browser checks actually completed. Deploy `dist/`, not the preview file.
 
 ## What is included
 
@@ -39,7 +39,7 @@ Generate `PREVIEW.html` after building with `npm run export:preview`. It embeds 
 - Certificates, a public CV PDF, education and real experience / activities.
 - Email, LinkedIn, GitHub and CV icons with accessible labels, tooltips and copy-email feedback.
 - GSAP reveals, Lenis scrolling, a remembered motion-pause control and reduced-motion support; paused/reduced motion displays the complete interest labels.
-- Guestbook drawer with persistent database storage, safe text rendering, one-level replies, draft retention, ownership rules and database rate limits. Both providers passed local OAuth/posting checks; production-origin sign-in remains subject to [guestbook release checks](docs/GUESTBOOK.md).
+- Guestbook drawer with persistent database storage, safe text rendering, one-level replies, draft retention, ownership rules and database rate limits. Both providers passed local OAuth/posting and production sign-in checks; see [guestbook verification](docs/GUESTBOOK.md) for the exact posting/moderation coverage.
 - Bilingual public privacy and terms pages for the guestbook.
 - Generated English HTML for search engines and visitors without JavaScript.
 
@@ -83,7 +83,7 @@ wrangler.jsonc           Optional Cloudflare Workers static-assets configuration
 
 The portfolio is a separate project. Its GitHub links do not alter any linked repository. AgentSOC and EVA do not receive guessed repository links; NADI remains private.
 
-Public source: [Aaapite/izzwan-syahfiq-portfolio](https://github.com/Aaapite/izzwan-syahfiq-portfolio). The existing Vercel website was verified at [izzwan-syahfiq-portfolio.vercel.app](https://izzwan-syahfiq-portfolio.vercel.app). The redesigned release is being prepared locally; its deployment is not yet confirmed. See [the validation record](docs/VALIDATION.md) for release status.
+Public source: [Aaapite/izzwan-syahfiq-portfolio](https://github.com/Aaapite/izzwan-syahfiq-portfolio). The redesigned website is live at [izzwan-syahfiq-portfolio.vercel.app](https://izzwan-syahfiq-portfolio.vercel.app). Application commit [`5be8022`](https://github.com/Aaapite/izzwan-syahfiq-portfolio/commit/5be8022b48c264849e3f83bd9c342dd6d99b72d8) was pushed to `main` and its Vercel production deployment was verified Ready. See [the validation record](docs/VALIDATION.md) for HTTPS/browser and guestbook results.
 
 ## Contact and ownership
 
