@@ -1,0 +1,293 @@
+{
+  "date": "2026-10-19",
+  "fileKey": "x8JPs7EHFCyF7YUpufRnio",
+  "screens": [
+    {
+      "id": "2:39",
+      "name": "Desktop · EN · Cream",
+      "width": 1440,
+      "height": 5245,
+      "descendants": 270,
+      "counts": {
+        "FRAME": 103,
+        "TEXT": 103,
+        "INSTANCE": 16,
+        "VECTOR": 48
+      },
+      "fonts": [
+        "Oswald",
+        "IBM Plex Mono",
+        "DM Sans"
+      ],
+      "fontCheck": true,
+      "images": [
+        {
+          "id": "4:96",
+          "name": "Original guardian engraving / decorative",
+          "width": 510,
+          "height": 640
+        },
+        {
+          "id": "4:103",
+          "name": "Original portrait / hover-focus-tap swaps photo",
+          "width": 350,
+          "height": 455
+        },
+        {
+          "id": "4:235",
+          "name": "Original casual portrait / alternate image",
+          "width": 340,
+          "height": 420
+        }
+      ],
+      "clippedText": []
+    },
+    {
+      "id": "2:40",
+      "name": "Desktop · EN · Navy",
+      "width": 1440,
+      "height": 5245,
+      "descendants": 271,
+      "counts": {
+        "FRAME": 103,
+        "TEXT": 103,
+        "INSTANCE": 16,
+        "VECTOR": 49
+      },
+      "fonts": [
+        "Oswald",
+        "IBM Plex Mono",
+        "DM Sans"
+      ],
+      "fontCheck": true,
+      "images": [
+        {
+          "id": "4:367",
+          "name": "Original guardian engraving / decorative",
+          "width": 510,
+          "height": 640
+        },
+        {
+          "id": "4:374",
+          "name": "Original portrait / hover-focus-tap swaps photo",
+          "width": 350,
+          "height": 455
+        },
+        {
+          "id": "4:506",
+          "name": "Original casual portrait / alternate image",
+          "width": 340,
+          "height": 420
+        }
+      ],
+      "clippedText": []
+    },
+    {
+      "id": "2:41",
+      "name": "Mobile · EN · Cream",
+      "width": 390,
+      "height": 7080,
+      "descendants": 240,
+      "counts": {
+        "FRAME": 85,
+        "TEXT": 89,
+        "INSTANCE": 19,
+        "VECTOR": 47
+      },
+      "fonts": [
+        "Oswald",
+        "IBM Plex Mono",
+        "DM Sans"
+      ],
+      "fontCheck": true,
+      "images": [
+        {
+          "id": "5:270",
+          "name": "Original guardian / decorative",
+          "width": 250,
+          "height": 380
+        },
+        {
+          "id": "5:272",
+          "name": "Original portrait / tap swaps photo",
+          "width": 218,
+          "height": 282
+        },
+        {
+          "id": "5:402",
+          "name": "Original casual portrait",
+          "width": 342,
+          "height": 360
+        }
+      ],
+      "clippedText": []
+    },
+    {
+      "id": "2:42",
+      "name": "Mobile · EN · Navy",
+      "width": 390,
+      "height": 7080,
+      "descendants": 241,
+      "counts": {
+        "FRAME": 85,
+        "TEXT": 89,
+        "INSTANCE": 19,
+        "VECTOR": 48
+      },
+      "fonts": [
+        "Oswald",
+        "IBM Plex Mono",
+        "DM Sans"
+      ],
+      "fontCheck": true,
+      "images": [
+        {
+          "id": "5:511",
+          "name": "Original guardian / decorative",
+          "width": 250,
+          "height": 380
+        },
+        {
+          "id": "5:513",
+          "name": "Original portrait / tap swaps photo",
+          "width": 218,
+          "height": 282
+        },
+        {
+          "id": "5:643",
+          "name": "Original casual portrait",
+          "width": 342,
+          "height": 360
+        }
+      ],
+      "clippedText": []
+    },
+    {
+      "id": "2:43",
+      "name": "Desktop · BM · Cream",
+      "width": 1440,
+      "height": 5215,
+      "descendants": 270,
+      "counts": {
+        "FRAME": 103,
+        "TEXT": 103,
+        "INSTANCE": 16,
+        "VECTOR": 48
+      },
+      "fonts": [
+        "Oswald",
+        "IBM Plex Mono",
+        "DM Sans"
+      ],
+      "fontCheck": true,
+      "images": [
+        {
+          "id": "4:637",
+          "name": "Original guardian engraving / decorative",
+          "width": 510,
+          "height": 640
+        },
+        {
+          "id": "4:644",
+          "name": "Original portrait / hover-focus-tap swaps photo",
+          "width": 350,
+          "height": 455
+        },
+        {
+          "id": "4:776",
+          "name": "Original casual portrait / alternate image",
+          "width": 340,
+          "height": 420
+        }
+      ],
+      "clippedText": []
+    },
+    {
+      "id": "2:44",
+      "name": "Mobile · BM · Cream",
+      "width": 390,
+      "height": 7060,
+      "descendants": 240,
+      "counts": {
+        "FRAME": 85,
+        "TEXT": 89,
+        "INSTANCE": 19,
+        "VECTOR": 47
+      },
+      "fonts": [
+        "Oswald",
+        "IBM Plex Mono",
+        "DM Sans"
+      ],
+      "fontCheck": true,
+      "images": [
+        {
+          "id": "5:751",
+          "name": "Original guardian / decorative",
+          "width": 250,
+          "height": 380
+        },
+        {
+          "id": "5:753",
+          "name": "Original portrait / tap swaps photo",
+          "width": 218,
+          "height": 282
+        },
+        {
+          "id": "5:883",
+          "name": "Original casual portrait",
+          "width": 342,
+          "height": 360
+        }
+      ],
+      "clippedText": []
+    },
+    {
+      "id": "8:526",
+      "name": "START HERE · Visual direction overview",
+      "width": 2240,
+      "height": 1226.5,
+      "descendants": 131,
+      "counts": {
+        "TEXT": 41,
+        "FRAME": 56,
+        "INSTANCE": 9,
+        "VECTOR": 25
+      },
+      "fonts": [
+        "IBM Plex Mono",
+        "Oswald",
+        "DM Sans"
+      ],
+      "fontCheck": true,
+      "images": [
+        {
+          "id": "8:547",
+          "name": "Original guardian engraving / decorative",
+          "width": 459,
+          "height": 576
+        },
+        {
+          "id": "8:554",
+          "name": "Original portrait / hover-focus-tap swaps photo",
+          "width": 315,
+          "height": 409.5
+        },
+        {
+          "id": "8:595",
+          "name": "Original guardian / decorative",
+          "width": 200,
+          "height": 304
+        },
+        {
+          "id": "8:597",
+          "name": "Original portrait / tap swaps photo",
+          "width": 174.39999389648438,
+          "height": 225.60000610351562
+        }
+      ],
+      "clippedText": []
+    }
+  ],
+  "editability": "Text, vectors, component instances and auto-layout frames form the UI. Image fills are only discrete portraits and decorative artwork; no full-interface screenshots are present."
+}

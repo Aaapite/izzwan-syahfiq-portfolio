@@ -6,7 +6,7 @@ import { initialThemeScript } from '../src/theme.js';
 const schema = {
   '@context': 'https://schema.org', '@type': 'Person', name: profile.fullName,
   email: profile.email, sameAs: [profile.github, profile.linkedin],
-  description: copy.en.description, affiliation: { '@type': 'CollegeOrUniversity', name: 'Universiti Kuala Lumpur MIIT' },
+  description: copy.en.description,
 };
 // The English content is generated before Vite starts, so it is also present without JavaScript.
 const html = `<!doctype html>
@@ -20,7 +20,7 @@ const html = `<!doctype html>
 <link rel="stylesheet" href="/src/style.css">
 <script type="application/ld+json">${JSON.stringify(schema).replaceAll('<', '\\u003c')}</script>
 </head><body><div id="app">${render('en')}</div>
-<noscript><p style="padding:20px;text-align:center">English content and links are available. Enable JavaScript for Malay, theme switching, project notes, filters and scroll animations.</p><style>.more-projects,.project-filters,.language-switch,#menu-toggle,#copy-email,#motion-toggle,#theme-toggle{display:none}.project-open{pointer-events:none}.project-card .text-link{display:none}</style></noscript>
+<noscript><p style="padding:20px;text-align:center">English content and links are available. Enable JavaScript for Malay, theme switching, project notes, guestbook, filters and scroll animations.</p><style>.more-projects,.project-filters,.language-switch,#menu-toggle,#copy-email,#motion-toggle,#theme-toggle,[data-open-guestbook]{display:none}.project-open{pointer-events:none}.project-card .text-link{display:none}</style></noscript>
 <script type="module" src="/src/main.js"></script></body></html>`;
 await writeFile(new URL('../index.html', import.meta.url), html);
 console.log('Generated the English document and metadata.');

@@ -1,0 +1,49 @@
+body.guestbook-open { overflow: hidden; }
+.guestbook-drawer { position: fixed; inset: 0 0 0 auto; margin: 0; padding: 0; width: min(530px, 100%); height: 100%; height: 100dvh; max-width: 100%; max-height: none; border: 0; border-left: 1px solid var(--line); color: var(--ink); background: var(--paper); overscroll-behavior: contain; }
+.guestbook-drawer::backdrop { background: rgb(9 20 40 / .48); backdrop-filter: blur(4px); }
+.guestbook-drawer[open] { display: flex; flex-direction: column; animation: guestbook-enter .35s cubic-bezier(.16,1,.3,1); }
+.guestbook-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding: 30px 30px 24px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.guestbook-eyebrow { color: var(--accent); font: 11px/1.4 'IBM Plex Mono', monospace; letter-spacing: .16em; }
+.guestbook-heading h2 { font-family: 'Oswald Variable', sans-serif; text-transform: uppercase; font-size: clamp(28px, 5vw, 38px); line-height: 1.2; letter-spacing: -.02em; margin: 12px 0 0; }
+.guestbook-close { display: grid; place-items: center; min-width: 44px; min-height: 44px; border: 1px solid var(--line); border-radius: 50%; }
+.guestbook-close svg { height: 20px; width: 20px; }
+.guestbook-content { padding: 24px 30px 40px; overflow: auto; flex: 1; }
+.guestbook-content p { font-size: 14px; line-height: 1.7; }
+.guestbook-intro { margin-bottom: 22px; }
+.guestbook-status:empty { display: none; }
+.guestbook-status { padding: 12px; background: var(--accent-soft); color: var(--ink); border-left: 2px solid var(--accent); }
+.guestbook-status.is-error { border-left-color: var(--brown); }
+.guestbook-providers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.guestbook-providers button, .guestbook-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 3px; font-size: 13px; font-weight: 600; line-height: 1.4; text-align: center; }
+.guestbook-providers button:hover, .guestbook-close:hover { background: var(--wash); border-color: var(--accent); }
+.guestbook-primary { background: var(--accent); color: var(--button-ink); border-color: var(--accent); }
+.guestbook-primary:hover { background: var(--button-hover); }
+.guestbook-drawer button:disabled { cursor: wait; opacity: .55; }
+.guestbook-providers button:disabled { cursor: not-allowed; }
+.guestbook-auth-preparing a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.guestbook-privacy, .guestbook-content .guestbook-draft-hint { font-size: 11px; margin-top: 14px; }
+.guestbook-stream-heading { border-top: 1px solid var(--line); margin-top: 28px; padding-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.guestbook-stream-heading h3 { margin: 0; font-size: 15px; }
+.guestbook-stream-heading button, .guestbook-account button, .guestbook-reply-target button { min-height: 44px; color: var(--accent); font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
+.guestbook-empty { padding: 32px 0; }
+.guestbook-note { padding: 22px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.guestbook-note-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13px; }
+.guestbook-note-meta time { font: 10px/1.5 'IBM Plex Mono', monospace; color: var(--muted); flex-shrink: 0; }
+.guestbook-note p { white-space: pre-wrap; margin: 12px 0 0; color: var(--ink); }
+.guestbook-note-actions { display: flex; gap: 16px; }
+.guestbook-note-actions button { min-height: 44px; font-size: 11px; color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
+.guestbook-reply { margin: 12px 0 0 12px; padding: 14px 0 4px 14px; border-bottom: 0; border-left: 1px solid var(--line); }
+.guestbook-reply .guestbook-note-meta { flex-wrap: wrap; gap: 3px 8px; }
+.guestbook-account, .guestbook-reply-target { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; }
+.guestbook-account span, .guestbook-reply-target span { overflow-wrap: anywhere; }
+.guestbook-composer label { display: block; font-size: 13px; margin: 12px 0 10px; font-weight: 600; }
+.guestbook-composer textarea { resize: vertical; min-height: 115px; max-height: 280px; width: 100%; background: var(--white); color: var(--ink); border: 1px solid var(--line); border-radius: 3px; padding: 13px; font: inherit; font-size: 14px; line-height: 1.6; }
+.guestbook-composer textarea::placeholder { color: var(--muted); opacity: 1; }
+.guestbook-composer textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.guestbook-compose-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }
+#guestbook-counter { font-size: 11px; color: var(--muted); }
+.guestbook-more { margin-top: 22px; min-height: 44px; width: 100%; border: 1px solid var(--line); font-size: 13px; }
+@keyframes guestbook-enter { from { transform: translateX(48px); opacity: .4; } to { transform: translateX(0); opacity: 1; } }
+.motion-paused .guestbook-drawer[open] { animation: none; }
+@media (prefers-reduced-motion: reduce) { .guestbook-drawer[open] { animation: none; } }
+@media (max-width: 480px) { .guestbook-heading { padding: 22px 20px; } .guestbook-content { padding: 22px 20px 30px; } .guestbook-providers { grid-template-columns: 1fr; } }

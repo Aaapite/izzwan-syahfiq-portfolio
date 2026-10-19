@@ -13,6 +13,16 @@ test('Both languages have semantic sections, working destinations and honest pro
     assert.equal(window.document.querySelectorAll('h1').length, 1);
     assert.equal(window.document.querySelectorAll('[data-project]').length, 13);
     assert.ok(window.document.querySelector('.ambient-background').getAttribute('aria-hidden') === 'true');
+    assert.equal(window.document.querySelectorAll('.tech-float').length, 4);
+    assert.ok(window.document.querySelector('.guardian-art').getAttribute('aria-hidden') === 'true');
+    for (const link of window.document.querySelectorAll('a[href="/documents/izzwan-syahfiq-cv.pdf"]')) {
+      assert.ok(link.querySelector('svg'));
+      assert.ok(link.getAttribute('aria-label'));
+      assert.equal(link.textContent.trim(), '');
+    }
+    const nonJourney = window.document.body.cloneNode(true);
+    nonJourney.querySelector('#experience').remove();
+    assert.doesNotMatch(nonJourney.textContent, /UniKL|Universiti Kuala Lumpur/i);
     for (const anchor of window.document.querySelectorAll('a[href^="#"]')) {
       assert.ok(window.document.getElementById(anchor.hash.slice(1)));
     }
@@ -26,7 +36,7 @@ test('Both languages have semantic sections, working destinations and honest pro
 });
 
 test('Theme preferences, language, project filters, portrait, dialog, menu and copy feedback work together', async () => {
-  const bundle = await build({ entryPoints: ['src/main.js'], bundle: true, write: false, format: 'iife', platform: 'browser', loader: { '.css': 'empty' } });
+  const bundle = await build({ entryPoints: ['src/main.js'], bundle: true, write: false, format: 'iife', platform: 'browser', define: { 'import.meta.env': '{}' }, loader: { '.css': 'empty' } });
   const window = new Window({ url: 'https://portfolio.example/', settings: { enableJavaScriptEvaluation: true } });
   // Reduced motion avoids running layout-dependent GSAP effects in a simulated DOM.
   let systemThemeChanged;
@@ -62,7 +72,7 @@ test('Theme preferences, language, project filters, portrait, dialog, menu and c
   assert.equal(window.document.documentElement.dataset.theme, 'dark');
   assert.equal(window.document.querySelector('#theme-toggle').getAttribute('aria-label'), copy.ms.darkMode);
   assert.equal(window.document.querySelector('#theme-toggle').title, copy.ms.useLight);
-  assert.equal(window.document.querySelector('h1').textContent, 'BakalBlue Teamer.');
+  assert.equal(window.document.querySelector('h1').textContent, copy.ms.hero.join(''));
   assert.equal(visible().length, 2); // Preserve the selected category after translating.
   click('#portrait'); assert.equal(window.document.querySelector('#portrait').getAttribute('aria-pressed'), 'true');
   click('#portrait'); assert.equal(window.document.querySelector('#portrait').getAttribute('aria-pressed'), 'false');
@@ -79,6 +89,7 @@ test('Theme preferences, language, project filters, portrait, dialog, menu and c
   assert.equal(window.localStorage.getItem('portfolio-language'), 'en');
   click('#motion-toggle'); assert.equal(window.localStorage.getItem('portfolio-motion'), 'off');
   assert.ok(window.document.documentElement.classList.contains('motion-paused'));
+  assert.equal(window.document.querySelector('#interest-text').textContent, copy.en.interests.join(' · '));
   Object.defineProperty(window.navigator, 'clipboard', { value: { async writeText() { throw new Error('Permission denied'); } }, configurable: true });
   click('#copy-email'); await new Promise(resolve => setTimeout(resolve, 0));
   assert.equal(window.document.querySelector('#copy-status').textContent, copy.en.copyFailed);
@@ -89,7 +100,7 @@ test('Theme preferences, language, project filters, portrait, dialog, menu and c
 });
 
 test('GSAP and Lenis initialise and the pause control restores visible content', async () => {
-  const bundle = await build({ entryPoints: ['src/main.js'], bundle: true, write: false, format: 'iife', platform: 'browser', loader: { '.css': 'empty' } });
+  const bundle = await build({ entryPoints: ['src/main.js'], bundle: true, write: false, format: 'iife', platform: 'browser', define: { 'import.meta.env': '{}' }, loader: { '.css': 'empty' } });
   const window = new Window({ url: 'https://portfolio.example/', settings: { enableJavaScriptEvaluation: true } });
   window.matchMedia = query => ({ media: query, matches: false, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} });
   Object.defineProperty(window, 'localStorage', { get() { throw new Error('Storage blocked'); } });

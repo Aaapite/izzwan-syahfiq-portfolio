@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How Izzwan Syahfiq's portfolio and guestbook use sign-in information, public notes and browser storage. English and Bahasa Melayu.">
+  <title>Privacy · Izzwan Syahfiq</title>
+  <script>try { const theme = localStorage.getItem('portfolio-theme'); if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme; } catch { /* System preference remains available. */ }</script>
+  <style>
+    :root { color-scheme:light; --paper:#faf8f3; --ink:#253143; --muted:#596775; --accent:#245ba8; --line:#ced5de; --wash:#edf1f6; background:var(--paper); color:var(--ink); font:16px/1.75 Arial,Helvetica,sans-serif; }
+    :root[data-theme=dark] { color-scheme:dark; --paper:#151d2b; --ink:#eee9dc; --muted:#b7c3d3; --accent:#8ab9f2; --line:#40516a; --wash:#202d40; }
+    @media(prefers-color-scheme:dark) { :root:not([data-theme]) { color-scheme:dark; --paper:#151d2b; --ink:#eee9dc; --muted:#b7c3d3; --accent:#8ab9f2; --line:#40516a; --wash:#202d40; } }
+    * { box-sizing:border-box; } body { margin:0; } a { color:var(--accent); text-underline-offset:4px; overflow-wrap:anywhere; } a:focus-visible { outline:3px solid var(--accent); outline-offset:4px; } .wrap { width:min(800px,calc(100% - 40px)); margin-inline:auto; }
+    .skip { position:absolute; top:8px; left:8px; padding:10px 16px; background:var(--paper); transform:translateY(-160%); } .skip:focus { transform:none; }
+    header { padding-block:28px; border-bottom:1px solid var(--line); } .brand { display:inline-flex; align-items:center; gap:12px; color:var(--ink); text-decoration:none; font-weight:700; } .mark { display:grid; place-items:center; width:44px; height:44px; background:#1932da; color:#f7f4ea; } nav { display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px; } nav a { display:inline-flex; min-height:44px; align-items:center; }
+    main { padding-block:52px 72px; } .eyebrow { color:var(--accent); font:12px/1.5 'Courier New',monospace; letter-spacing:.12em; text-transform:uppercase; } h1 { font-size:clamp(36px,7vw,54px); line-height:1.1; letter-spacing:-.04em; margin:16px 0; } h2 { font-size:23px; line-height:1.35; margin-top:32px; } p { margin-block:14px; } .updated { color:var(--muted); font-size:14px; } .language-links { padding:16px 20px; background:var(--wash); margin-block:28px 40px; display:flex; flex-wrap:wrap; gap:12px 28px; } .language-links a { display:inline-flex; min-height:44px; align-items:center; }
+    article { scroll-margin-top:24px; } article + article { margin-top:56px; padding-top:40px; border-top:1px solid var(--line); } article > h2:first-child { font-size:32px; margin-top:0; } li { margin-block:10px; } footer { border-top:1px solid var(--line); padding-block:28px; color:var(--muted); font-size:14px; } footer a { display:inline-flex; min-height:44px; align-items:center; } @media(max-width:480px) { main { padding-top:36px; } h2 { font-size:21px; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content / Langkau ke kandungan</a>
+  <header><div class="wrap"><a class="brand" href="/"><span class="mark" aria-hidden="true">IS</span>Izzwan Syahfiq</a><nav aria-label="Page navigation"><a href="/">Portfolio</a><a href="/terms.html">Terms / Terma</a><a href="mailto:izzsyahfiq@gmail.com">Contact / Hubungi</a></nav></div></header>
+  <main id="main" class="wrap">
+    <p class="eyebrow">Portfolio &amp; guestbook / Portfolio &amp; buku tetamu</p>
+    <h1>Privacy / Privasi</h1>
+    <p class="updated">Updated 19 October 2026 / Dikemas kini 19 Oktober 2026</p>
+    <div class="language-links" aria-label="Languages / Bahasa"><a href="#en" lang="en">English</a><a href="#bm" lang="ms">Bahasa Melayu</a></div>
+    <article id="en" lang="en" aria-labelledby="en-title">
+      <h2 id="en-title">Your information on this website</h2>
+      <p>This is Izzwan Syahfiq's personal portfolio. You can browse it without signing in. Sign-in is used for the optional guestbook, where visitors can leave notes and replies.</p>
+      <h2>What sign-in shares</h2>
+      <p>If you choose GitHub or Google sign-in, Supabase receives the basic profile information provided by that account, such as your account identifier, display name and email address. Supabase handles authentication and session information.</p>
+      <p>I use guestbook account information for sign-in, attributing notes and controlling abuse. I do not use it for marketing. Your email address is kept in the private authentication system and is not included in public guestbook notes.</p>
+      <h2>What other visitors can see</h2>
+      <p>Your guestbook display name, note or reply, and posting date are public. Notes also contain a technical account identifier used to associate each note with its author. Please do not post passwords, access tokens, private contact details or other sensitive information.</p>
+      <h2>What stays in your browser</h2>
+      <ul>
+        <li>The portfolio remembers your language, theme and motion preferences in browser storage.</li>
+        <li>Authentication session information is stored in your browser so you can stay signed in. Signing out removes the local session.</li>
+        <li>Unsent guestbook drafts use this tab's session storage. They remain until posted or the tab is closed. Clearing browser storage also removes saved preferences, sessions and drafts.</li>
+      </ul>
+      <h2>Hosting and storage</h2>
+      <p>Vercel hosts the portfolio. The guestbook uses a dedicated Supabase project in Singapore for authentication and note storage. GitHub or Google handles the provider side of sign-in. These services may process technical connection and request information to operate and protect their services; their own privacy policies also apply.</p>
+      <h2>Keeping and removing information</h2>
+      <p>Notes stay in the guestbook until their author removes them or they are moderated. You can delete your own note while signed in; deleting a root note also deletes its replies. A moderator may hide or remove content. Hidden records can remain in the database for moderation.</p>
+      <p>Authentication records, service logs and backups are managed separately by the service providers. I do not promise a fixed retention period for those records. To request access, correction or removal of your guestbook account information or content, email <a href="mailto:izzsyahfiq@gmail.com">izzsyahfiq@gmail.com</a> with enough detail to identify the relevant account or note. Please do not send passwords or tokens.</p>
+      <h2>Questions and changes</h2>
+      <p>You can contact me at <a href="mailto:izzsyahfiq@gmail.com">izzsyahfiq@gmail.com</a>. This page may change when the portfolio's data practices change; the updated date is shown above. External websites linked from the portfolio have their own policies.</p>
+    </article>
+    <article id="bm" lang="ms" aria-labelledby="bm-title">
+      <h2 id="bm-title">Maklumat anda di laman ini</h2>
+      <p>Ini ialah portfolio peribadi Izzwan Syahfiq. Anda boleh melayarinya tanpa log masuk. Log masuk digunakan untuk buku tetamu pilihan, tempat pelawat boleh meninggalkan nota dan balasan.</p>
+      <h2>Maklumat yang dikongsi semasa log masuk</h2>
+      <p>Jika anda memilih log masuk GitHub atau Google, Supabase menerima maklumat profil asas yang diberikan oleh akaun tersebut, seperti pengecam akaun, nama paparan dan alamat e-mel. Supabase mengurus pengesahan dan maklumat sesi.</p>
+      <p>Saya menggunakan maklumat akaun buku tetamu untuk log masuk, mengenal pasti penulis nota dan mengawal penyalahgunaan. Maklumat ini tidak digunakan untuk pemasaran. Alamat e-mel anda disimpan dalam sistem pengesahan peribadi dan tidak disertakan dalam nota awam buku tetamu.</p>
+      <h2>Maklumat yang boleh dilihat pelawat lain</h2>
+      <p>Nama paparan, nota atau balasan, dan tarikh hantaran buku tetamu anda dipaparkan kepada umum. Nota juga mengandungi pengecam akaun teknikal untuk menghubungkan nota dengan penulisnya. Jangan siarkan kata laluan, token akses, butiran hubungan peribadi atau maklumat sensitif yang lain.</p>
+      <h2>Maklumat yang disimpan dalam pelayar</h2>
+      <ul>
+        <li>Portfolio mengingati pilihan bahasa, tema dan animasi anda dalam storan pelayar.</li>
+        <li>Maklumat sesi pengesahan disimpan dalam pelayar supaya anda boleh kekal log masuk. Log keluar membuang sesi setempat.</li>
+        <li>Draf buku tetamu yang belum dihantar menggunakan storan sesi tab ini. Draf kekal sehingga dihantar atau tab ditutup. Mengosongkan storan pelayar turut membuang pilihan, sesi dan draf yang disimpan.</li>
+      </ul>
+      <h2>Pengehosan dan penyimpanan</h2>
+      <p>Vercel mengehoskan portfolio ini. Buku tetamu menggunakan projek Supabase khusus di Singapura untuk pengesahan dan penyimpanan nota. GitHub atau Google mengurus bahagian log masuk penyedia. Perkhidmatan ini mungkin memproses maklumat sambungan dan permintaan teknikal untuk menjalankan serta melindungi perkhidmatan mereka; dasar privasi mereka turut terpakai.</p>
+      <h2>Penyimpanan dan pemadaman maklumat</h2>
+      <p>Nota kekal dalam buku tetamu sehingga dipadam oleh penulisnya atau dimoderasi. Anda boleh memadam nota sendiri semasa log masuk; memadam nota utama turut memadam balasannya. Moderator boleh menyembunyikan atau membuang kandungan. Rekod yang disembunyikan boleh kekal dalam pangkalan data untuk tujuan moderasi.</p>
+      <p>Rekod pengesahan, log perkhidmatan dan sandaran diurus secara berasingan oleh penyedia perkhidmatan. Saya tidak menjanjikan tempoh penyimpanan tetap bagi rekod tersebut. Untuk meminta akses, pembetulan atau pemadaman maklumat akaun atau kandungan buku tetamu anda, e-mel <a href="mailto:izzsyahfiq@gmail.com">izzsyahfiq@gmail.com</a> dengan butiran yang mencukupi untuk mengenal pasti akaun atau nota berkenaan. Jangan hantar kata laluan atau token.</p>
+      <h2>Pertanyaan dan perubahan</h2>
+      <p>Anda boleh menghubungi saya di <a href="mailto:izzsyahfiq@gmail.com">izzsyahfiq@gmail.com</a>. Halaman ini boleh berubah apabila cara portfolio mengendalikan data berubah; tarikh kemas kini dipaparkan di atas. Laman luar yang dipautkan daripada portfolio mempunyai dasar masing-masing.</p>
+    </article>
+  </main>
+  <footer><div class="wrap">© 2026 Izzwan Syahfiq · <a href="/terms.html">Terms / Terma</a> · <a href="/">Back to portfolio / Kembali ke portfolio</a></div></footer>
+</body>
+</html>

@@ -19,6 +19,6 @@ for (const lang of ['en', 'ms']) {
   assert.equal(new Set(ids).size, ids.length, 'Duplicate HTML ID.');
   for (const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(match[1]), `Broken anchor: ${match[1]}.`);
 }
-const files = [...profile.portraits, profile.cv, ...certificates.map(c => c.file).filter(Boolean)];
+const files = [...profile.portraits, profile.cv, ...certificates.map(c => c.file).filter(Boolean), '/images/guardian-engraving.webp', ...['git', 'python', 'docker', 'kubernetes'].map(name => `/icons/${name}.svg`), '/privacy.html', '/terms.html'];
 for (const file of files) await access(new URL('../public' + file, import.meta.url));
 console.log(`Content and links checked: 2 languages, ${projects.length} projects, ${certificates.length} training entries, ${files.length} local assets.`);

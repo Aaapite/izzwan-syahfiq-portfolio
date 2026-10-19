@@ -5,6 +5,8 @@ import Lenis from 'lenis';
 import { profile, copy, projects } from './content.js';
 import { render, projectDetails } from './render.js';
 import { bootstrapTheme } from './theme.js';
+import { mountGuestbook } from './guestbook.js';
+import './guestbook.css';
 
 gsap.registerPlugin(ScrollTrigger);
 const app = document.querySelector('#app');
@@ -20,6 +22,10 @@ let ticker;
 let animationContext;
 let scrollFrame;
 let lastProjectButton;
+let cleanupGuestbook;
+let interestTimer;
+let orbitTime = 0;
+let lastOrbitTick;
 
 function readPreference(key, fallback) {
   try { return localStorage.getItem(key) ?? fallback; } catch { return fallback; }
@@ -53,12 +59,49 @@ systemDark.addEventListener('change', event => {
 });
 
 function stopAnimation() {
+  clearTimeout(interestTimer);
+  interestTimer = null;
+  lastOrbitTick = null;
   animationContext?.revert();
   animationContext = null;
   if (ticker) gsap.ticker.remove(ticker);
   ticker = null;
   lenis?.destroy();
   lenis = null;
+}
+function startInterests(disabled) {
+  const label = document.querySelector('#interest-text');
+  if (!label) return;
+  const words = copy[lang].interests;
+  label.textContent = disabled ? words.join(' · ') : words[0];
+  if (disabled) return;
+  let index = 0;
+  let length = words[0].length;
+  let deleting = true;
+  const step = () => {
+    const word = words[index];
+    length += deleting ? -1 : 1;
+    label.textContent = word.slice(0, Math.max(0, length));
+    let delay = deleting ? 45 : 80;
+    if (deleting && length <= 0) { index = (index + 1) % words.length; deleting = false; delay = 260; }
+    else if (!deleting && length >= word.length) { deleting = true; delay = 2300; }
+    interestTimer = setTimeout(step, delay);
+  };
+  interestTimer = setTimeout(step, 2500);
+}
+function renderOrbit(time, animate = true) {
+  const orbit = document.querySelector('.tech-orbit');
+  if (!orbit) return;
+  if (animate && lastOrbitTick != null && !document.hidden) orbitTime += Math.min(time - lastOrbitTick, .05);
+  lastOrbitTick = time;
+  const rx = Math.max(0, (orbit.clientWidth - 64) / 2);
+  const ry = Math.max(0, (orbit.clientHeight - 76) / 2);
+  orbit.querySelectorAll('.tech-float').forEach((icon, i) => {
+    const angle = orbitTime * (Math.PI * 2 / 38) + i * Math.PI / 2 - Math.PI / 4;
+    const x = Math.cos(angle) * rx;
+    const y = Math.sin(angle) * ry;
+    icon.style.transform = `translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,0) translate(-50%,-50%)`;
+  });
 }
 function updateProgress() {
   if (scrollFrame) return;
@@ -77,10 +120,12 @@ function setupAnimation() {
   const toggle = document.querySelector('#motion-toggle');
   toggle.textContent = paused ? copy[lang].resumeMotion : copy[lang].motion;
   toggle.setAttribute('aria-pressed', String(paused));
+  startInterests(motionDisabled);
+  renderOrbit(0, false);
   if (motionDisabled) { updateProgress(); return; }
   lenis = new Lenis({ anchors: false, lerp: 0.09, smoothWheel: true, syncTouch: false });
   lenis.on('scroll', ScrollTrigger.update);
-  ticker = time => lenis?.raf(time * 1000);
+  ticker = time => { lenis?.raf(time * 1000); renderOrbit(time); };
   gsap.ticker.add(ticker);
   gsap.ticker.lagSmoothing(0);
   animationContext = gsap.context(() => {
@@ -89,9 +134,6 @@ function setupAnimation() {
     document.querySelectorAll('.reveal').forEach(element => {
       gsap.from(element, { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out', scrollTrigger: { trigger: element, start: 'top 92%', once: true } });
     });
-    gsap.to('.portrait-wrap', { y: -22, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.6 } });
-    gsap.to('.diagram-node:nth-child(1)', { y: -12, ease: 'none', scrollTrigger: { trigger: '.about-section', start: 'top bottom', end: 'bottom top', scrub: 0.8 } });
-    gsap.to('.diagram-node:nth-child(2)', { x: -10, ease: 'none', scrollTrigger: { trigger: '.about-section', start: 'top bottom', end: 'bottom top', scrub: 0.8 } });
   }, app);
   document.querySelectorAll('img').forEach(img => {
     if (!img.complete) img.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
@@ -132,6 +174,7 @@ function wireDialog() {
   dialog.addEventListener('click', event => { if (event.target === dialog) closeDialog(); });
 }
 function applyLanguage(next, restoreFocus = false) {
+  cleanupGuestbook?.();
   closeDialog();
   stopAnimation();
   lang = next === 'ms' ? 'ms' : 'en';
@@ -146,6 +189,7 @@ function applyLanguage(next, restoreFocus = false) {
   wireDialog();
   updateProjects();
   setupAnimation();
+  cleanupGuestbook = mountGuestbook({ lang, onOpen: () => lenis?.stop(), onClose: () => lenis?.start() });
   if (restoreFocus) document.querySelector(`[data-language="${lang}"]`).focus({ preventScroll: true });
 }
 app.addEventListener('click', async event => {
@@ -227,7 +271,7 @@ app.addEventListener('keydown', event => {
   }
 });
 window.addEventListener('scroll', updateProgress, { passive: true });
-window.addEventListener('resize', updateProgress, { passive: true });
+window.addEventListener('resize', () => { updateProgress(); renderOrbit(0, false); }, { passive: true });
 reducedMotion.addEventListener('change', setupAnimation);
 applyLanguage(lang);
 if (window.location.hash) {
